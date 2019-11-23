@@ -1,0 +1,1 @@
+<img src="static/pics/live1.jpg" style="width:100%"/>;<img src="static/pics/live2.jpg" style="width:100%"/>;<img src="static/pics/live3.jpg" style="width:100%"/>;<img src="static/pics/newapart.jpeg" style="width:100%"/>;<img src="static/pics/newapart1.jpeg" style="width:100%"/>;<img src="static/pics/newapart2.jpeg" style="width:100%"/>
