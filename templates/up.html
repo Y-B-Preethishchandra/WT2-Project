@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="static/mainstyle.css">
+<link rel="stylesheet" href="static/apartstyle1.css">
+<style>
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+
+body {margin:0;}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+li a.active {
+    color: white;
+    background-color: #4CAF50;
+}
+
+.apart{
+	background-color:#f3f3f3;
+	margin-top:50px;
+	margin-bottom:50px;
+}	
+
+td{ padding:10px;}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.button1 {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	width: 350px;
+}
+
+.button2 {
+    background-color: yellow;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	width: 350px;
+}
+
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+form {
+     border: 1px solid  black;
+	 margin-top:30px;
+	 margin-left:300px;
+	 margin-right:300px;
+	 margin-bottom:30px;
+	 background-color:#f3f3f3;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type=button] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type=button]:hover {
+    opacity: 0.8;
+}
+
+.container {
+    padding: 16px;
+}
+
+</style>
+<script>
+function xssprotect(value){
+var lt = /</g, 
+    gt = />/g, 
+    ap = /'/g, 
+    ic = /"/g;
+return value = value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
+}
+function func(){
+
+document.getElementById('msg').value=xssprotect(document.getElementById('msg').value);
+document.getElementById('prc').value=xssprotect(document.getElementById('prc').value);
+document.getElementById('frm').submit();
+}
+</script>
+</head>
+<body>
+
+
+
+<div id="header">
+<h1>THE PROPERTY FRONT<i><small><font color="lightgreen">.com</font></small></i></h1>
+</div>
+
+
+<ul>
+  <li><a href="/">Home</a></li>
+  <ul style="float:right;list-style-type:none;">
+    <li><a href="/aboutus">About</a></li>
+    <li><a href="/">Contact</a></li>
+	<li><a href="/login">Log out</a></li>
+  </ul>
+</ul>
+
+<h2><center>Sell your property</center></h2>
+
+<form action="/sell" method="post" enctype="multipart/form-data" id='frm'>
+<br>
+<div class="container">
+<input type="hidden" value="{{ csrf_token() }}" name="csrf_token"/>
+<b>What are you selling</b> :<select name="sell">
+  <option value="Villas">Villa</option>
+  <option value="Apartments">Apartment</option>
+  <option value="Commercials">Commercial</option>
+  <option value="Plots">Plot</option>
+</select><br><br>
+    <b>Upload an image of your property:</b>
+    <input type="file" name="fileToUpload" id="fileToUpload">
+{% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul>
+               {% for message in messages %}
+               <li<{{ message }}</li>
+               {% endfor %}
+            </ul>
+         {% endif %}
+      {% endwith %}
+    <br><br>
+	<b>Write something about your property:</b><br>
+	<textarea name="message" rows="5" cols="63" id='msg'></textarea><br>
+	<b>Price:</b><input type="text" name="price" placeholder="in Rs.." id='prc'>
+	
+	
+	<input type="button" value='Sell' onclick="func()"/>
+	
+</div>	
+</form>
+
+</body>
+</html>

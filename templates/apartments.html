@@ -1,0 +1,298 @@
+<html>
+<head>
+<link rel="stylesheet" href="static/mainstyle.css">
+<link rel="stylesheet" href="static/apartstyle1.css">
+<style>
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+
+body {margin:0;}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+li a.active {
+    color: white;
+    background-color: #4CAF50;
+}
+
+.apart{
+	background-color:#f3f3f3;
+	margin-top:50px;
+	margin-bottom:50px;
+}	
+
+td{ padding:10px;}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.button1 {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	width: 400px;
+}
+
+.button2 {
+    background-color: yellow;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	width: 350px;
+}
+
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+</style>
+
+<script>
+		function init(){
+		
+		xhr = new XMLHttpRequest();	
+			if(xhr)
+			{
+				xhr.onreadystatechange = getContent;
+				xhr.open("GET", "static/content.txt", true);
+				xhr.send(null);
+			}	
+		}
+		function getContent(){
+		
+		if(xhr.readyState=="4"&&xhr.status==200){
+				document.getElementById("picture1").innerHTML = xhr.responseText;
+                                document.getElementById("picture2").innerHTML = xhr.responseText;
+                                document.getElementById("picture3").innerHTML = xhr.responseText;
+                                document.getElementById("picture4").innerHTML = xhr.responseText;
+                                document.getElementById("picture5").innerHTML = xhr.responseText;
+                                document.getElementById("picture6").innerHTML = xhr.responseText;
+				setTimeout(getPic, 4000);				
+		  }
+		  
+		}
+		function getPic(){
+		
+			xhr.open("GET", "static/image.txt", true);
+			xhr.onreadystatechange = showImg;
+			xhr.send(null);
+		
+		
+		}
+		function showImg()
+		{
+			if(xhr.readyState == 4 && xhr.status == 200)
+			{
+                                var arr=(xhr.responseText).split(";");
+				document.getElementById("picture1").innerHTML = arr[0];	
+                                document.getElementById("picture2").innerHTML = arr[1];
+                                document.getElementById("picture3").innerHTML = arr[2];
+                                document.getElementById("picture4").innerHTML = arr[3];
+                                document.getElementById("picture5").innerHTML = arr[4];
+                                document.getElementById("picture6").innerHTML = arr[5];
+			}
+		}
+		
+</script>		
+
+</head>
+<body class="w3-light-grey" onload="init()">
+
+
+
+<div id="header">
+<h1>THE PROPERTY FRONT<i><small><font color="lightgreen">.com</font></small></i></h1>
+</div>
+
+
+<ul>
+  <li><a href="/">Home</a></li>
+  <ul style="float:right;list-style-type:none;">
+    <li><a href="/aboutus.php">About</a></li>
+	<li><a href="/logout">Log out</a></li>
+  </ul>
+</ul>
+
+<div class="w3-content" style="max-width:1532px;">
+
+  <div class="w3-container w3-margin-top" id="rooms">
+    <h3>Apartments</h3>
+    <p>Make yourself at home is our slogan. We offer the best beds in the industry. Sleep well and rest well.</p>
+	
+  </div>
+
+  <div class="w3-row-padding w3-padding-16">
+    <div class="w3-third w3-margin-bottom">
+      <div class="content" id="picture1">Picture</div>
+      <div class="w3-container w3-white">
+	   <h3>Penthouse 1</h3>
+        <h6 class="w3-opacity">From 65,00,000</h6>
+        <p>Kolkata 2 BHK</p>
+        <p>2100 sq. feet</p>
+		
+         <button class="button button1"><a href="/apartments/1">View Apartment</a></button>
+      </div>
+    </div>
+	
+	
+    <div class="w3-third w3-margin-bottom">
+      <div class="content" id="picture2">Picture</div>
+      <div class="w3-container w3-white">
+        <h3>Service Apartment-1</h3>
+        <h6 class="w3-opacity">From Rs. 85,00,000</h6>
+        <p>Mumbai- 2BHK</p>
+        <p>1800 sq.feet</p>
+        <button class="button button1"><a href="/apartments/2">View Apartment</a></button>
+      </div>
+    </div>
+	
+    <div class="w3-third w3-margin-bottom">
+      <div class="content" id="picture3">Picture</div>
+      <div class="w3-container w3-white">
+        <h3>Service Apartment-2</h3>
+        <h6 class="w3-opacity">From Rs. 50,00,000</h6>
+        <p>Pune- 3BHK</p>
+        <p>1700 sq.feet</p>
+	<button class="button button1"><a href="/apartments/3">View Apartment</a></button>			
+      </div>
+    </div>
+  </div>
+  
+ <div class="w3-row-padding w3-padding-16"> 
+    <div class="w3-third w3-margin-bottom">
+      <div class="content" id="picture4">Picture</div>
+      <div class="w3-container w3-white">
+        <h3>Penthouse -2 </h3>
+        <h6 class="w3-opacity">From Rs. 2,50,00,000</h6>
+        <p>Mumbai 5BHK</p>
+        <p>2400 sq. feet</p>
+        <button class="button button1"><a href="/apartments/4">View Apartment</a></button>
+      </div>
+    </div>
+
+  	
+    <div class="w3-third w3-margin-bottom">
+      <div class="content" id="picture5">Picture</div>
+      <div class="w3-container w3-white">
+         <h3>Designer Apartment - 1</h3>
+        <h6 class="w3-opacity">From Rs. 45,00,000</h6>
+        <p>Bangalore-2BHK</p>
+        <p>1350 sq.feet</p>
+        <button class="button button1"><a href="/apartments/5">View Apartment</a></button>
+      </div>
+	  </div>
+  
+
+    <div class="w3-third w3-margin-bottom">
+      <div class="content" id="picture6">Picture</div>
+      <div class="w3-container w3-white">
+         <h3>4BHK Deluxe Apartment </h3>
+        <h6 class="w3-opacity">From Rs. 3,00,00,000</h6>
+        <p>Mumbai - 4BHK</p>
+        <p>1900 sq. feet</p>
+        <button class="button button1"><a href="/apartments/6">View Apartment</a></button>
+      </div>
+    </div>
+</div>  
+
+<div class="w3-row-padding w3-padding-16">
+    <div class="w3-third w3-margin-bottom">
+        <img src="static/pics/newapart4.jpeg" style="width:100%">
+      <div class="w3-container w3-white">
+         <h3>Penthouse 3</h3>
+        <h6 class="w3-opacity">From Rs. 1,50,00,000</h6>
+        <p>Bangalore - 4BHK</p>
+        <p>2500 sq. feet</p>
+        <button class="button button1"><a href="/apartments/7">View Apartment</a></button>
+      </div>
+    </div>
+	
+	    <div class="w3-third w3-margin-bottom">
+	<img src="static/pics/newapart5.jpeg" style="width:100%">
+      <div class="w3-container w3-white">
+                <h3>Designer Apartment- 2</h3>
+        <h6 class="w3-opacity">From Rs. 25,00,000</h6>
+        <p>Mangalore - 1.5 BHK</p>
+        <p>1200 sq. feet</p>
+        <button class="button button1"><a href="/apartments/8">View Apartment</a></button>
+      </div>
+    </div>
+	
+	    <div class="w3-third w3-margin-bottom">
+	<img src="static/pics/newapart6.jpeg" style="width:100%">
+      <div class="w3-container w3-white">
+        <h3>Studio Apartment</h3>
+        <h6 class="w3-opacity">From Rs. 30,00,000</h6>
+        <p>Bangalore - 1BHK</p>
+        <p>900 sq.feet</p>
+        <button class="button button1"><a href="/apartments/9">View Apartment</a></button>
+      </div>
+    </div>
+</div>	
+  
+  
+  <div id="footer">
+<p> Find us on: </p>
+<a href="https://www.facebook.com/The-Property-Front-301900063659517/"><img src="static/pics/fb.png" style="width:3%"></a>
+<a href="https://www.instagram.com/thepropertyfront/?hl=en"><img src="static/pics/instagram.png" style="width:3%"></a>
+<img src="static/pics/pint.png" style="width:3%">
+<img src="static/pics/twit.png" style="width:3%">
+</div>
+	
+</body>
+</html>

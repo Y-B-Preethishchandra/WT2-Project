@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+
+body {margin:0;}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    <!--border: 1px solid #e7e7e7;-->
+    background-color: black;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+li a.active {
+    color: white;
+    background-color: black;
+}
+
+div.polaroid {
+  float: left;
+  width: 45%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 30px;
+}
+
+div.container {
+  text-align: center;
+  padding: 2px 2px;
+}
+
+div.polaroid:hover {
+    border: 1px solid #777;
+}
+.button1 {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	width: 400px;
+}
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+</style>
+<script type="text/javascript">
+	function loaded(){
+		xhr.onreadystatechange=showChunk;
+		xhr.open("GET","http://127.0.0.1/getChunk/"+-1,true);
+		xhr.send();		
+	}
+	xhr=new XMLHttpRequest();
+	scrollAmt=700;
+	count=1;
+	n=1;
+	function getChunk(){
+		scroll=document.body.scrollTop||document.documentElement.scrollTop;
+		if(scroll>count*scrollAmt){
+			scrollAmt=scroll;
+			xhr.onreadystatechange=showChunk;
+			xhr.open("GET","http://127.0.0.1/getChunk/"+count++,true);
+			xhr.send();
+		}
+	}
+	function showChunk(){
+		if(xhr.readyState==4 && xhr.status==200){
+			var res=xhr.responseText;
+			if(res.indexOf("!")==0){
+				var head = document.getElementsByTagName('HEAD')[0]; 
+        		var link = document.createElement('link');  
+        		link.rel = 'stylesheet';        
+        		link.type = 'text/css';       
+        		link.href = 'static/'+res.split("!")[1];
+        		head.appendChild(link);
+        		xhr.onreadystatechange=showChunk;
+				xhr.open("GET","http://127.0.0.1/getChunk/"+0,true);
+				xhr.send();
+			}
+			if(res.indexOf("#")==0)
+				var img=document.getElementById("bck").src='static/'+res.split("#")[1];
+			if(res.indexOf(";")==-1)
+				document.getElementById("map").src='static/'+res;
+			else{
+				document.getElementById("buy").src='static/'+res.split(";")[0];
+				document.getElementById("sell").src='static/'+res.split(";")[1];
+			}
+		}	
+	}
+	window.onscroll=getChunk;
+	function checklogin(){
+		window.location.href="/sell";
+	}
+	function checklogin2(){
+		window.location.href="/buy";
+	}
+</script>
+</head>
+<body onload="loaded();">
+<div class="w3-top">
+<ul>
+  <li><a class="active" href="#home"><font color="white">THE PROPERTY FRONT</font></a></li>
+  <ul style="float:right;list-style-type:none;">
+    <li><a href="/aboutus">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+	<li><a href="/logout">Log Out</a></li>
+  </ul>
+</ul>
+</div>
+
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <img class="w3-image" id="bck" alt="Architecture" width="1500" height="800">
+  <div class="w3-display-middle w3-margin-top w3-center">
+    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>THE</b></span> <span class="w3-hide-small"><font color="green">PROPERTY FRONT</font></span></h1>
+  </div>
+</header>
+
+  <div class="w3-container w3-padding-32" id="projects">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">What are you looking for?</h3>
+  </div>
+  
+<div class="polaroid" onclick='checklogin2()'>
+  <img id="buy" style="width:100%">
+  <div class="container"></a>
+    <p><big>BUY PROPERTY</big></p>
+  </div>
+</div>
+
+<div class="polaroid" onclick="checklogin()">
+
+  <img id="sell" style="width:100%">
+  <div class="container">
+    <p><big>SELL PROPERTY</big></p>
+  </div>
+</div>   
+
+
+  
+ <div class="w3-container w3-padding-32">
+    <h3 id="contact" class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact us</h3>
+<table>
+<tr>
+<td>THE PROPERTY FRONT main office<br>
+3rd Floor<br>
+Bangalore Central<br>
+Jayanagar 9th Block<br>
+Bangalore-560078<br>
+<pre>                                                                                </pre></td>
+<td><img id="map" height="300px" width="650px"></td>
+</tr>
+</table>
+</div>
+
+
+<div class="w3-container w3-padding-32">
+<h3 id="contact" class="w3-border-bottom w3-border-light-grey w3-padding-16">Send us an E-mail</h3>
+ <form  action="/mail" method="POST" enctype="multipart/form-data"><br>
+<table>
+<tr>
+<td>Your name:
+    <input name="name" type="text" value="" size="60"/><br><br>
+    Your email:
+    <input name="email" type="text" value="" size="60"/><br><br>
+	Phone number:  
+	<input name="number" type="text" value="" size="57"/><br><br>
+    Your message:<br><textarea name="message" rows="3" cols="71"></textarea><br>
+    <pre>         <input class="button button1" type="submit" value="Send mail"/></pre>
+
+</td>
+
+<td>
+<div class="w3-container w3-padding-32">hi
+</div>
+</td>
+
+</tr>
+</table>
+    </form>
+</div>	
+	
+<div id="footer">
+<p> Find us on: </p>
+<a href="https://www.facebook.com/The-Property-Front-301900063659517/"><img src="static/pics/fb.png" style="width:3%"></a>
+<a href="https://www.instagram.com/thepropertyfront/?hl=en"><img src="static/pics/instagram.png" style="width:3%"></a>
+<img src="static/pics/pint.png" style="width:3%">
+<img src="static/pics/twit.png" style="width:3%">
+</div>
+
+</body>

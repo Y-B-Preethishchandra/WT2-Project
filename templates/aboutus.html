@@ -1,0 +1,157 @@
+<html>
+<head>
+<link rel="stylesheet" href="static/mainstyle.css">
+<link rel="stylesheet" href="static/apartstyle1.css">
+<style>
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+
+body {margin:0;}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+li a.active {
+    color: white;
+    background-color: #4CAF50;
+}
+
+.apart{
+	background-color:#f3f3f3;
+	margin-top:50px;
+	margin-bottom:50px;
+}	
+
+td{ padding:10px;}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.button1 {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	width: 400px;
+}
+
+.button2 {
+    background-color: yellow;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	width: 350px;
+}
+
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#videoDiv {width: 100%; height: 360px; position: relative;}
+#videoBlock width: 100%; height: 100%;  display: flex;  justify-content: center; align-items: center;}
+#videoMessage {width: 100%; height:100%; position: absolute; top: 0; left: 0;}
+#videoMessage *{padding:0.4em; margin:0}
+#videoMessage {text-shadow: 2px 2px 2px #000000; color:white;z-index:99 }
+#videoMessage h1{font-size: 2em;color:#ffffff;text-align:center;}
+#videoMessage h2{font-size: 1.5em;color:#ffffff;text-align:center;}
+#videoMessage h3{font-size: 1.2em;color:#ffffff;text-align:center;}
+.videoClick {text-align:center}
+.videoClick a{color:white;background-color:rgba(241, 241, 241, 0.25);font-size: 1.7em;cursor:pointer;cursor:hand}
+.videosize {
+    position:absolute;
+    z-index:-1;
+    top:0;
+    left:0;
+    width:100%; 
+    height:100vh;
+}
+
+</style>
+</head>
+<body class="w3-light-grey">
+
+
+
+<div id="header">
+<h1>THE PROPERTY FRONT<i><small><font color="lightgreen">.com</font></small></i></h1>
+</div>
+
+
+<ul>
+  <li><a href="/">Home</a></li>
+  <ul style="float:right;list-style-type:none;">
+	<li><a href="/logout">Log out</a></li>
+  </ul>
+</ul>
+
+  <div id="videoDiv"> 
+<div id="videoBlock">
+<video src="static/property.webm" id="video" class="videosize" autoplay="autoplay" loop="loop"></video> 
+<div id="videoMessage">
+<p><h3><br><br><br><br><br><br><br><br><br>THE PROPERTY FRONT is a website aimed at helping people make better choices while choosing property.<br>
+
+THE PROPERTY FRONT is the leading and most trusted property search website of the nation.<br>
+
+We cater to all those who wish to buy plots, apartments, houses or sell property</h3></p>
+
+</p> 
+</div>
+</div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+
+body {margin:0;}
+
+
+form {
+     border: 1px solid  black;
+	 margin-top:30px;
+	 margin-left:400px;
+	 margin-right:400px;
+	 margin-bottom:30px;
+	 background-color:#f3f3f3;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type=button] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type=button]:hover {
+    opacity: 0.8;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+(max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+</style>
+<script type='text/javascript' src='static/sha256.js'></script>
+<script>
+function xssprotect(value){
+var lt = /</g, 
+    gt = />/g, 
+    ap = /'/g, 
+    ic = /"/g;
+value = value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
+return value;
+}
+function hash(){
+var un=document.getElementById('un');
+var pass=document.getElementById('pw');
+if(un.value=="" || pass.value=="")
+	alert("Invalid username/ password");
+else{
+	un.value=xssprotect(un.value)
+	var sha256 = new jsSHA('SHA-256', 'TEXT');
+	sha256.update(pass);
+	var hash = sha256.getHash("HEX");
+	var form=document.getElementById('frm');
+	pass.value=hash;
+	form.submit()
+	}
+}
+</script>
+</head>
+<body bgcolor="white" >
+
+
+<div id="header">
+<h1>THE PROPERTY FRONT<i><small><font color="lightgreen">.com</font></small></i></h1>
+</div>
+
+
+<form method="POST" action="/login" id='frm'>
+  <div class="imgcontainer">
+    <img src="static/pics/logo.png" class="avatar"  style="width:125px;height:125px">
+  </div>
+
+  <div class="container">
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" id='un'>
+	<input type="hidden" value="{{ csrf_token() }}" name="csrf_token"/>
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" id='pw'>
+        
+    <input type="button" onclick='hash()' value="Login"/>
+	
+	<label><b>New User?</b></label>
+	<a href="/signup"><button type="button">Sign up</button></a>
+  </div>
+  
+</form>
+
+<div id="footer">
+<p> Find us on: </p>
+<a href="https://www.facebook.com/The-Property-Front-301900063659517/"><img src="static/pics/fb.png" style="width:3%"></a>
+<a href="https://www.instagram.com/thepropertyfront/?hl=en"><img src="static/pics/instagram.png" style="width:3%"></a>
+<img src="static/pics/pint.png" style="width:3%">
+<img src="static/pics/twit.png" style="width:3%">
+</div>
+
+</body>
+</html>

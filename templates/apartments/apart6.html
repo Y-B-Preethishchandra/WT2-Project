@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="/static/mainstyle.css">
+<link rel="stylesheet" href="/static/raleway.css">
+<link rel="stylesheet" href="/static/apartstyle1.css">
+<style>
+
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+.mySlides {display:none}
+</style>
+
+
+<body class="w3-content w3-border-left w3-border-right">
+
+<div id="header">
+<h1>THE PROPERTY FRONT<i><small><font color="lightgreen">.com</font></small></i></h1>
+</div>
+
+<div class="w3-main w3-white">
+
+  <div class="w3-hide-large" style="margin-top:80px"></div>
+
+
+  <div class="w3-container" id="apartment">
+    <h2 class="w3-text-green">The Apartment</h2>
+    <div class="w3-display-container mySlides">
+    <img src="/static/pics/newapart2.jpeg" style="width:80%;margin-bottom:-6px">
+      <div class="w3-display-bottomleft w3-container w3-black">
+        <p>Living Room</p>
+      </div>
+    </div>
+    <div class="w3-display-container mySlides">
+    <img src="/static/pics/kit7.jpeg" style="width:80%;margin-bottom:-6px">
+      <div class="w3-display-bottomleft w3-container w3-black">
+        <p>Kitchen</p>
+      </div>
+    </div>
+    <div class="w3-display-container mySlides">
+    <img src="/static/pics/bed8.jpeg" style="width:80%;margin-bottom:-6px">
+      <div class="w3-display-bottomleft w3-container w3-black">
+        <p>Bedroom</p>
+      </div>
+    </div>
+    <div class="w3-display-container mySlides">
+    <img src="/static/pics/newapart10.jpeg" style="width:80%;margin-bottom:-6px">
+      <div class="w3-display-bottomleft w3-container w3-black">
+        <p>Second living room</p>
+      </div>
+    </div>
+  </div>
+  <div class="w3-row-padding w3-section">
+    <div class="w3-col s3">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="/static/pics/newapart2.jpeg" style="width:100%;cursor:pointer" onclick="currentDiv(1)" title="Living room">
+    </div>
+    <div class="w3-col s3">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="/static/pics/kit7.jpeg" style="width:100%;cursor:pointer" onclick="currentDiv(2)" title="Dining room">
+    </div>
+    <div class="w3-col s3">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="/static/pics/bed8.jpeg" style="width:100%;cursor:pointer" onclick="currentDiv(3)" title="Bedroom">
+    </div>
+    <div class="w3-col s3">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="/static/pics/newapart10.jpeg" style="width:100%;cursor:pointer" onclick="currentDiv(4)" title="Second Living Room">
+    </div>
+  </div>
+
+  <div class="w3-container">
+    <h4><strong>The space</strong></h4>
+    <div class="w3-row w3-large">
+      <div class="w3-col s6">
+        <p>* Max people: 4</p>
+        <p>* Bathrooms: 2</p>
+        <p>* Bedrooms: 1</p>
+      </div>
+      <div class="w3-col s6">
+        <p>* Check In: After 3PM</p>
+        <p>* Check Out: 12PM</p>
+      </div>
+    </div>
+    <hr>
+    
+    <h4><strong>Amenities</strong></h4>
+    <div class="w3-row w3-large">
+      <div class="w3-col s6">
+        <p>* Shower</p>
+        <p>* WiFi</p>
+        <p>* TV</p>
+      </div>
+      <div class="w3-col s6">
+        <p>* Kitchen</p>
+        <p>* Heating</p>
+        <p>* Accessible</p>
+      </div>
+    </div>
+    <hr>
+    
+        <h4><strong>Extra Info</strong></h4>
+    <p>Costs of all ameneties are included. Government taxes and registration fees as applicable. </p>
+    <hr>
+    
+    <h4><strong>Rules</strong></h4>
+    <p>The apartment shall only be handed over after the registration process.  Any issues must be raised before. The website shall not be held liable later, since the transaction is between the seller and buyer only. </p>
+    <p>Subscribe to receive updates on available dates and special offers.</p>
+    <p><button class="w3-button w3-green w3-third">Subscribe</button></p>
+  </div>
+  <hr>
+  
+  <div class="w3-container" id="contact">
+    <h2>Contact</h2>
+    <i style="width:30px"></i> Mangalore, India<br>
+    <i style="width:30px"></i> Phone: +080 26678776<br>
+    <i style="width:30px"> </i> Email: karan@gmail.com<br><br><br>
+</div>
+
+<div id="footer">
+<p> Find us on: </p>
+<a href="https://www.facebook.com/The-Property-Front-301900063659517/"><img src="/static/pics/fb.png" style="width:3%"></a>
+<a href="https://www.instagram.com/thepropertyfront/?hl=en"><img src="/static/pics/instagram.png" style="width:3%"></a>
+<img src="/static/pics/pint.png" style="width:3%">
+<img src="/static/pics/twit.png" style="width:3%">
+</div>
+
+<script>
+
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+  }
+  x[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " w3-opacity-off";
+}
+</script>
+
+</body>
+</html>
